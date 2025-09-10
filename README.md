@@ -27,3 +27,13 @@ To build and run:
 - Compile with: javac -cp "jars/junit-4.13.2.jar:jars/hamcrest-core-1.3.jar:." ./c/*.java ./u/*.java
 - Run the program with: java -cp "jars/junit-4.13.2.jar:jars/hamcrest-core-1.3.jar:." c.CarRunner
 - Run the tests with: java -cp "jars/junit-4.13.2.jar:jars/hamcrest-core-1.3.jar:." org.junit.runner.JUnitCore u.HybridVehicleTest
+
+The following commands are necessary to run the system:
+1. Compile with:
+- javac -cp "jars/junit-4.13.2.jar:jars/hamcrest-core-1.3.jar:." ./c/*.java 
+
+2. Run the program with:
+- java -cp "jars/junit-4.13.2.jar:jars/hamcrest-core-1.3.jar:." c.CarRunner
+
+3. Run the tests with:
+- java -cp "jars/junit-4.13.2.jar:jars/hamcrest-core-1.3.jar:." org.junit.runner.JUnitCore u.HybridVehicleTest
