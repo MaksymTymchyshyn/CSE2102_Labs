@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.example.PizzaStoreTest" time="0.239" tests="5" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.example.PizzaStoreTest" time="0.158" tests="5" errors="0" skipped="0" failures="0">
   <properties>
     <property name="awt.toolkit" value="sun.awt.X11.XToolkit"/>
     <property name="java.specification.version" value="11"/>
@@ -14,7 +14,7 @@
     <property name="os.name" value="Linux"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.boot.library.path" value="/opt/java/11.0.14/lib"/>
-    <property name="sun.java.command" value="/workspaces/CSE2102_Labs/Lab_3/pizza-factory-maven/target/surefire/surefirebooter-20250923021755232_3.jar /workspaces/CSE2102_Labs/Lab_3/pizza-factory-maven/target/surefire 2025-09-23T02-17-54_778-jvmRun1 surefire-20250923021755232_1tmp surefire_0-20250923021755232_2tmp"/>
+    <property name="sun.java.command" value="/workspaces/CSE2102_Labs/Lab_3/pizza-factory-maven/target/surefire/surefirebooter-20250923170310880_3.jar /workspaces/CSE2102_Labs/Lab_3/pizza-factory-maven/target/surefire 2025-09-23T17-03-10_446-jvmRun1 surefire-20250923170310880_1tmp surefire_0-20250923170310880_2tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="/workspaces/CSE2102_Labs/Lab_3/pizza-factory-maven/target/test-classes:/workspaces/CSE2102_Labs/Lab_3/pizza-factory-maven/target/classes:/home/codespace/.m2/repository/junit/junit/4.13.2/junit-4.13.2.jar:/home/codespace/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -30,7 +30,7 @@
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.awt.graphicsenv" value="sun.awt.X11GraphicsEnvironment"/>
-    <property name="surefire.real.class.path" value="/workspaces/CSE2102_Labs/Lab_3/pizza-factory-maven/target/surefire/surefirebooter-20250923021755232_3.jar"/>
+    <property name="surefire.real.class.path" value="/workspaces/CSE2102_Labs/Lab_3/pizza-factory-maven/target/surefire/surefirebooter-20250923170310880_3.jar"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="11.0.14.1+1-LTS"/>
     <property name="user.name" value="codespace"/>
@@ -56,14 +56,14 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="55.0"/>
   </properties>
-  <testcase name="testGreekPizzaOrder" classname="com.example.PizzaStoreTest" time="0.044">
+  <testcase name="testGreekPizzaOrder" classname="com.example.PizzaStoreTest" time="0.029">
     <system-out><![CDATA[Greek Pizza is being prepared.
 Greek Pizza is being baked.
 Greek Pizza is being cut.
 Greek Pizza is being boxed.
 ]]></system-out>
   </testcase>
-  <testcase name="testUnknownPizzaType" classname="com.example.PizzaStoreTest" time="0.011"/>
+  <testcase name="testUnknownPizzaType" classname="com.example.PizzaStoreTest" time="0.005"/>
   <testcase name="testGlutenFreePizzaOrder" classname="com.example.PizzaStoreTest" time="0.002">
     <system-out><![CDATA[GlutenFree Pizza is being prepared.
 GlutenFree Pizza is being baked.
@@ -78,7 +78,7 @@ Cheese Pizza is being cut.
 Cheese Pizza is being boxed.
 ]]></system-out>
   </testcase>
-  <testcase name="testPeperoniPizzaOrder" classname="com.example.PizzaStoreTest" time="0.002">
+  <testcase name="testPeperoniPizzaOrder" classname="com.example.PizzaStoreTest" time="0.001">
     <system-out><![CDATA[Peperoni Pizza is being prepared.
 Peperoni Pizza is being baked.
 Peperoni Pizza is being cut.
