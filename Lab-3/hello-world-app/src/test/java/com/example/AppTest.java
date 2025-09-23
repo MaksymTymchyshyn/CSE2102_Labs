@@ -1,27 +1,55 @@
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
+package com.example;
+
+import static org.junit.Assert.*;
+import org.junit.Test;
 
 public class AppTest {
+    
+    @Test
+    public void testCheesePizzaOrder() {
+        PizzaFactory factory = new PizzaFactory();
+        PizzaStore store = new PizzaStore(factory);
+
+        Pizza pizza = store.orderPizza("cheese");
+        assertEquals("Cheese Pizza", pizza.getName());
+    }
 
     @Test
-    public void testMain() {
-        // Redirecting the output to capture it for verification
-        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        PrintStream printStream = new PrintStream(outputStream);
-        PrintStream originalOut = System.out;
-        System.setOut(printStream);
+    public void testGlutenFreePizzaOrder() {
+        PizzaFactory factory = new PizzaFactory();
+        PizzaStore store = new PizzaStore(factory);
 
-        // Call the main method of the App class
-        App.main(new String[]{});
+        Pizza pizza = store.orderPizza("glutenfree");
+        assertEquals("GlutenFree Pizza", pizza.getName());
+    }
 
-        // Reset the output
-        System.out.flush();
-        System.setOut(originalOut);
+    @Test
+    public void testGreekPizzaOrder() {
+        PizzaFactory factory = new PizzaFactory();
+        PizzaStore store = new PizzaStore(factory);
 
-        // Verify the output
-        String expectedOutput = "Hello, World!\n";
-        assertEquals(expectedOutput, outputStream.toString());
+        Pizza pizza = store.orderPizza("greek");
+        assertEquals("Greek Pizza", pizza.getName());
+    }
+
+    @Test
+    public void testPeperoniPizzaOrder() {
+        PizzaFactory factory = new PizzaFactory();
+        PizzaStore store = new PizzaStore(factory);
+
+        Pizza pizza = store.orderPizza("peperoni");
+        assertEquals("Peperoni Pizza", pizza.getName());
+    }
+
+    @Test
+    public void testUnknownPizzaType() {
+        PizzaFactory factory = new PizzaFactory();
+        
+        try {
+            factory.createPizza("unknown");
+            fail("Expected IllegalArgumentException");
+        } catch (IllegalArgumentException e) {
+            assertTrue(e.getMessage().contains("Unknown pizza type"));
+        }
     }
 }

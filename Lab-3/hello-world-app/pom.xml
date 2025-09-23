@@ -4,12 +4,12 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.example</groupId>
-    <artifactId>hello-world-app</artifactId>
+    <artifactId>pizza-factory-app</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>Hello World App</name>
-    <description>A simple Hello World application using Maven</description>
+    <name>Pizza Factory App</name>
+    <description>A pizza ordering system demonstrating the Factory Design Pattern</description>
 
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>

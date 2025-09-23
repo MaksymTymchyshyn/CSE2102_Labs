@@ -1,5 +1,17 @@
+package com.example;
+
 public class App {
     public static void main(String[] args) {
-        System.out.println("Hello, World!");
+        PizzaFactory factory = new PizzaFactory();
+        PizzaStore store = new PizzaStore(factory);
+
+        System.out.println("Ordering a Cheese Pizza:");
+        store.orderPizza("cheese");
+
+        System.out.println("\nOrdering a Greek Pizza:");
+        store.orderPizza("greek");
+
+        System.out.println("\nOrdering a Gluten-Free Pizza:");
+        store.orderPizza("glutenfree");
     }
 }
