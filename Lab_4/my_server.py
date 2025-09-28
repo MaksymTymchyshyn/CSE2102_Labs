@@ -61,16 +61,17 @@ def get_factors():
         # Get factors
         factors = trial_division(inINT)
         
+        # Special case for 1 - not prime, return as is
+        if inINT == 1:
+            return jsonify({"number": inINT, "factors": [1], "is_prime": False})
+        
         # If the number is prime (only one factor which is itself), return [inINT]
         if len(factors) == 1 and factors[0] == inINT:
             return jsonify({"number": inINT, "factors": [inINT], "is_prime": True})
         else:
             # For composite numbers, include 1 as the first factor as per example
-            if inINT > 1:
-                factors_with_one = [1] + factors
-                return jsonify({"number": inINT, "factors": factors_with_one, "is_prime": False})
-            else:
-                return jsonify({"number": inINT, "factors": factors, "is_prime": False})
+            factors_with_one = [1] + factors
+            return jsonify({"number": inINT, "factors": factors_with_one, "is_prime": False})
         
     except Exception as e:
         return jsonify({"error": str(e)}), 500
