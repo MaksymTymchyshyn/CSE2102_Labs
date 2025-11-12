@@ -228,25 +228,3 @@ The application supports multiple independent quiz takers simultaneously:
 4. **Service Layer**: Business logic separated from controller for better testability
 5. **No Database**: In-memory storage for simplicity (could be enhanced with database)
 6. **Template Engine**: Thymeleaf provides server-side rendering with good Spring integration
-
-## Future Enhancements
-
-Possible improvements for production use:
-- Database persistence for quizzes and results
-- User authentication and history tracking
-- Admin panel to manage questions
-- Question randomization
-- Timer for each question
-- Different quiz categories/topics
-- Leaderboard functionality
-- Question difficulty levels
-
-## Author
-
-Created for CSE2102 Software Engineering  
-Prof. Bradford  
-Lab 7: Thymeleaf Quiz Server
-
-## License
-
-Academic use only - CSE2102 Lab Assignment
