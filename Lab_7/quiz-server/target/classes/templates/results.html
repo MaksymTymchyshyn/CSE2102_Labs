@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Results - Quiz Server</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            padding: 50px;
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+        }
+        
+        .trophy {
+            font-size: 5em;
+            margin-bottom: 20px;
+            animation: bounce 1s ease-in-out;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        h1 {
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+        }
+        
+        .user-name {
+            color: #666;
+            font-size: 1.3em;
+            margin-bottom: 40px;
+        }
+        
+        .score-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .score-label {
+            font-size: 1.2em;
+            opacity: 0.9;
+            margin-bottom: 10px;
+        }
+        
+        .score-value {
+            font-size: 4em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .score-percentage {
+            font-size: 1.5em;
+            opacity: 0.95;
+        }
+        
+        .performance-message {
+            background: #f8f9ff;
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            border-left: 5px solid #667eea;
+        }
+        
+        .performance-message h3 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+        
+        .performance-message p {
+            color: #555;
+            font-size: 1.1em;
+            line-height: 1.6;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.1em;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            font-weight: 600;
+            text-decoration: none;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        }
+        
+        .btn:active {
+            transform: translateY(0);
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 2px solid #f0f0f0;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 2em;
+            font-weight: bold;
+            color: #667eea;
+        }
+        
+        .stat-label {
+            color: #666;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="trophy">🏆</div>
+        <h1>Quiz Complete!</h1>
+        <div class="user-name">
+            Congratulations, <strong th:text="${quiz.userName}">User</strong>!
+        </div>
+        
+        <div class="score-card">
+            <div class="score-label">Your Score</div>
+            <div class="score-value">
+                <span th:text="${score}">8</span>/<span th:text="${total}">10</span>
+            </div>
+            <div class="score-percentage">
+                <span th:text="${percentageFormatted}">80</span>%
+            </div>
+        </div>
+        
+        <div class="performance-message" th:if="${percentage >= 80}">
+            <h3>🌟 Excellent Work!</h3>
+            <p>You have a strong understanding of the material. Keep up the great work!</p>
+        </div>
+        
+        <div class="performance-message" th:if="${percentage >= 60 && percentage < 80}">
+            <h3>👍 Good Job!</h3>
+            <p>You have a good grasp of the concepts. Review the areas where you missed questions to improve further.</p>
+        </div>
+        
+        <div class="performance-message" th:if="${percentage < 60}">
+            <h3>📚 Keep Learning!</h3>
+            <p>This is a great learning opportunity. Review the material and try again. Practice makes perfect!</p>
+        </div>
+        
+        <div class="stats">
+            <div class="stat-item">
+                <div class="stat-value" th:text="${score}">8</div>
+                <div class="stat-label">Correct</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" th:text="${total - score}">2</div>
+                <div class="stat-label">Incorrect</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" th:text="${total}">10</div>
+                <div class="stat-label">Total</div>
+            </div>
+        </div>
+        
+        <div style="margin-top: 40px;">
+            <a href="/" class="btn">Take Another Quiz</a>
+        </div>
+    </div>
+</body>
+</html>

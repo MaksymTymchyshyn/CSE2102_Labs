@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Question - Quiz Server</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            padding: 40px;
+            max-width: 700px;
+            width: 100%;
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        
+        .user-info {
+            color: #667eea;
+            font-weight: 600;
+            font-size: 1.1em;
+        }
+        
+        .progress {
+            color: #666;
+            font-weight: 600;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 10px;
+            background: #f0f0f0;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            transition: width 0.3s ease;
+        }
+        
+        .question-box {
+            background: #f8f9ff;
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            border-left: 5px solid #667eea;
+        }
+        
+        .question-number {
+            color: #667eea;
+            font-weight: 600;
+            margin-bottom: 15px;
+            font-size: 0.9em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .question-text {
+            color: #333;
+            font-size: 1.3em;
+            font-weight: 600;
+            line-height: 1.5;
+        }
+        
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .option {
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 18px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+        }
+        
+        .option:hover {
+            border-color: #667eea;
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.2);
+        }
+        
+        .option input[type="radio"] {
+            margin-right: 15px;
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+        
+        .option label {
+            cursor: pointer;
+            font-size: 1.1em;
+            color: #333;
+            flex-grow: 1;
+        }
+        
+        .btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.1em;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            font-weight: 600;
+            width: 100%;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        }
+        
+        .btn:active {
+            transform: translateY(0);
+        }
+        
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+    </style>
+    <script>
+        function enableSubmit() {
+            document.getElementById('submitBtn').disabled = false;
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="user-info">
+                👤 <span th:text="${quiz.userName}">User</span>
+            </div>
+            <div class="progress">
+                Question <span th:text="${questionNumber}">1</span> of <span th:text="${totalQuestions}">10</span>
+            </div>
+        </div>
+        
+        <div class="progress-bar">
+            <div class="progress-fill" 
+                 th:style="'width: ' + ${questionNumber * 100 / totalQuestions} + '%'"></div>
+        </div>
+        
+        <div class="question-box">
+            <div class="question-number">Question <span th:text="${questionNumber}">1</span></div>
+            <div class="question-text" th:text="${question.text}">Question text here</div>
+        </div>
+        
+        <form th:action="@{/quiz/{quizId}/answer(quizId=${quiz.quizId})}" method="post">
+            <input type="hidden" name="questionId" th:value="${question.id}">
+            
+            <div class="options">
+                <div class="option" th:each="option, iterStat : ${question.options}">
+                    <input type="radio" 
+                           th:id="'option' + ${iterStat.index}" 
+                           name="answerIndex" 
+                           th:value="${iterStat.index}"
+                           onclick="enableSubmit()"
+                           required>
+                    <label th:for="'option' + ${iterStat.index}" th:text="${option}">Option text</label>
+                </div>
+            </div>
+            
+            <button type="submit" id="submitBtn" class="btn" disabled>
+                <span th:if="${questionNumber < totalQuestions}">Next Question →</span>
+                <span th:if="${questionNumber == totalQuestions}">Complete Quiz ✓</span>
+            </button>
+        </form>
+    </div>
+</body>
+</html>
