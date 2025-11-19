@@ -14,6 +14,7 @@ import quizQuestions from './utils/quizData';
 function App() {
   const [currentView, setCurrentView] = useState('home'); // home, quiz, results, detailed
   const [quiz, setQuiz] = useState(null);
+  const [updateTrigger, setUpdateTrigger] = useState(0);
 
   // Start the quiz
   const handleStartQuiz = () => {
@@ -26,7 +27,7 @@ function App() {
   const handleSubmitAnswer = (answerIndex) => {
     if (quiz) {
       submitAnswer(quiz, answerIndex);
-      setQuiz({ ...quiz }); // Trigger re-render
+      setUpdateTrigger(prev => prev + 1); // Trigger re-render
     }
   };
 
@@ -34,7 +35,7 @@ function App() {
   const handleNext = () => {
     if (quiz) {
       goToNextQuestion(quiz);
-      setQuiz({ ...quiz }); // Trigger re-render
+      setUpdateTrigger(prev => prev + 1); // Trigger re-render
     }
   };
 
@@ -42,7 +43,7 @@ function App() {
   const handlePrevious = () => {
     if (quiz) {
       goToPreviousQuestion(quiz);
-      setQuiz({ ...quiz }); // Trigger re-render
+      setUpdateTrigger(prev => prev + 1); // Trigger re-render
     }
   };
 

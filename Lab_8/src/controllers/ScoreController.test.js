@@ -256,10 +256,10 @@ describe('ScoreController', () => {
       // Verify all work together
       expect(score.percentage).toBe(100);
       expect(grade).toBe('A');
-      expect(message).toContain('Excellent');
+      expect(message.message).toContain('Outstanding');
       expect(Object.keys(categoryScores)).toHaveLength(2);
       expect(duration).toBeDefined();
-      expect(exportData.grade).toBe('A');
+      expect(exportData.score.grade).toBe('A');
     });
   });
 });

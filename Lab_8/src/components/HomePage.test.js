@@ -3,37 +3,37 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import HomePage from './HomePage';
 
 describe('HomePage Component', () => {
-  const mockOnStart = jest.fn();
+  const mockOnStartQuiz = jest.fn();
 
   beforeEach(() => {
-    mockOnStart.mockClear();
+    mockOnStartQuiz.mockClear();
   });
 
   describe('Rendering', () => {
     test('should render welcome title', () => {
-      render(<HomePage onStart={mockOnStart} />);
+      render(<HomePage onStartQuiz={mockOnStartQuiz} />);
       expect(screen.getByText(/Welcome to the React Quiz/i)).toBeInTheDocument();
     });
 
     test('should render subtitle', () => {
-      render(<HomePage onStart={mockOnStart} />);
+      render(<HomePage onStartQuiz={mockOnStartQuiz} />);
       expect(screen.getByText(/Test Your Knowledge!/i)).toBeInTheDocument();
     });
 
     test('should render Start Quiz button', () => {
-      render(<HomePage onStart={mockOnStart} />);
+      render(<HomePage onStartQuiz={mockOnStartQuiz} />);
       const button = screen.getByRole('button', { name: /Start Quiz/i });
       expect(button).toBeInTheDocument();
     });
 
     test('should render info cards', () => {
-      render(<HomePage onStart={mockOnStart} />);
+      render(<HomePage onStartQuiz={mockOnStartQuiz} />);
       expect(screen.getByText(/12 multiple-choice questions/i)).toBeInTheDocument();
       expect(screen.getByText(/Quiz Information/i)).toBeInTheDocument();
     });
 
     test('should render all topic categories', () => {
-      render(<HomePage onStart={mockOnStart} />);
+      render(<HomePage onStartQuiz={mockOnStartQuiz} />);
       expect(screen.getByText('Web Development')).toBeInTheDocument();
       expect(screen.getByText('React')).toBeInTheDocument();
       expect(screen.getByText('Programming Concepts')).toBeInTheDocument();
@@ -43,29 +43,29 @@ describe('HomePage Component', () => {
     });
 
     test('should render instructions section', () => {
-      render(<HomePage onStart={mockOnStart} />);
+      render(<HomePage onStartQuiz={mockOnStartQuiz} />);
       expect(screen.getByText(/How It Works/i)).toBeInTheDocument();
       expect(screen.getByText(/Click the "Start Quiz" button below/i)).toBeInTheDocument();
     });
   });
 
   describe('Interactions', () => {
-    test('should call onStart when button clicked', () => {
-      render(<HomePage onStart={mockOnStart} />);
+    test('should call onStartQuiz when button clicked', () => {
+      render(<HomePage onStartQuiz={mockOnStartQuiz} />);
       const button = screen.getByRole('button', { name: /Start Quiz/i });
       fireEvent.click(button);
-      expect(mockOnStart).toHaveBeenCalledTimes(1);
+      expect(mockOnStartQuiz).toHaveBeenCalledTimes(1);
     });
 
-    test('should not call onStart if button not clicked', () => {
-      render(<HomePage onStart={mockOnStart} />);
-      expect(mockOnStart).not.toHaveBeenCalled();
+    test('should not call onStartQuiz if button not clicked', () => {
+      render(<HomePage onStartQuiz={mockOnStartQuiz} />);
+      expect(mockOnStartQuiz).not.toHaveBeenCalled();
     });
   });
 
   describe('Styling', () => {
     test('should apply correct CSS classes', () => {
-      const { container } = render(<HomePage onStart={mockOnStart} />);
+      const { container } = render(<HomePage onStartQuiz={mockOnStartQuiz} />);
       expect(container.querySelector('.home-page')).toBeInTheDocument();
       expect(container.querySelector('.home-container')).toBeInTheDocument();
       expect(container.querySelector('.info-card')).toBeInTheDocument();

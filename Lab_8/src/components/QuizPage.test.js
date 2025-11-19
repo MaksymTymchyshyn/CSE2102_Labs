@@ -6,7 +6,8 @@ describe('QuizPage Component', () => {
   const mockQuestion = {
     id: 1,
     text: 'What is React?',
-    options: ['A library', 'A framework', 'A language', 'A tool']
+    options: ['A library', 'A framework', 'A language', 'A tool'],
+    category: 'React'
   };
 
   const mockQuiz = {
@@ -19,7 +20,7 @@ describe('QuizPage Component', () => {
   };
 
   const mockHandlers = {
-    onAnswer: jest.fn(),
+    onSubmitAnswer: jest.fn(),
     onNext: jest.fn(),
     onPrevious: jest.fn(),
     onSubmit: jest.fn()
@@ -50,7 +51,7 @@ describe('QuizPage Component', () => {
 
     test('should render progress bar', () => {
       const { container } = render(<QuizPage quiz={mockQuiz} {...mockHandlers} />);
-      const progressBar = container.querySelector('.progress-fill');
+      const progressBar = container.querySelector('.progress-bar-fill');
       expect(progressBar).toBeInTheDocument();
     });
 
@@ -64,11 +65,11 @@ describe('QuizPage Component', () => {
   });
 
   describe('Option Selection', () => {
-    test('should call onAnswer when option clicked', () => {
+    test('should call onSubmitAnswer when option clicked', () => {
       render(<QuizPage quiz={mockQuiz} {...mockHandlers} />);
       const firstOption = screen.getByText(/A library/i).closest('.option-button');
       fireEvent.click(firstOption);
-      expect(mockHandlers.onAnswer).toHaveBeenCalledWith(0);
+      expect(mockHandlers.onSubmitAnswer).toHaveBeenCalledWith(0);
     });
 
     test('should highlight selected option', () => {
@@ -130,9 +131,10 @@ describe('QuizPage Component', () => {
       expect(mockHandlers.onPrevious).toHaveBeenCalledTimes(1);
     });
 
-    test('should not show Previous button on first question', () => {
+    test('should disable Previous button on first question', () => {
       render(<QuizPage quiz={mockQuiz} {...mockHandlers} />);
-      expect(screen.queryByRole('button', { name: /Previous/i })).not.toBeInTheDocument();
+      const prevButton = screen.getByRole('button', { name: /Previous/i });
+      expect(prevButton).toBeDisabled();
     });
   });
 
@@ -153,7 +155,7 @@ describe('QuizPage Component', () => {
         ...mockQuiz,
         currentQuestionIndex: 9,
         isQuestionAnswered: () => true,
-        userAnswers: new Map([[1, 0]])
+        userAnswers: new Map([[1, 0], [2, 1], [3, 0], [4, 1], [5, 0], [6, 1], [7, 0], [8, 1], [9, 0], [10, 1]])
       };
       render(<QuizPage quiz={lastQuiz} {...mockHandlers} />);
       const submitButton = screen.getByRole('button', { name: /Submit Quiz/i });
@@ -165,7 +167,7 @@ describe('QuizPage Component', () => {
   describe('Progress Calculation', () => {
     test('should calculate correct progress percentage', () => {
       const { container } = render(<QuizPage quiz={mockQuiz} {...mockHandlers} />);
-      const progressFill = container.querySelector('.progress-fill');
+      const progressFill = container.querySelector('.progress-bar-fill');
       expect(progressFill.style.width).toBe('10%');
     });
 
@@ -176,7 +178,7 @@ describe('QuizPage Component', () => {
         userAnswers: new Map()
       };
       const { container } = render(<QuizPage quiz={middleQuiz} {...mockHandlers} />);
-      const progressFill = container.querySelector('.progress-fill');
+      const progressFill = container.querySelector('.progress-bar-fill');
       expect(progressFill.style.width).toBe('50%');
     });
   });
@@ -189,7 +191,7 @@ describe('QuizPage Component', () => {
         userAnswers: new Map()
       };
       const { container } = render(<QuizPage quiz={emptyQuiz} {...mockHandlers} />);
-      expect(container.textContent).toContain('Loading');
+      expect(container.textContent).toContain('No questions available');
     });
 
     test('should handle question with no options', () => {
