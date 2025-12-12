@@ -1,0 +1,25 @@
+INFO:__main__:Starting Web Token Service...
+ * Serving Flask app 'my-server'
+ * Debug mode: on
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.0.10.209:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+INFO:__main__:Starting Web Token Service...
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 117-142-076
+INFO:werkzeug:127.0.0.1 - - [12/Dec/2025 21:16:21] "GET / HTTP/1.1" 200 -
+INFO:__main__:Generated token for user: phillip.bradford@uconn.edu
+INFO:werkzeug:127.0.0.1 - - [12/Dec/2025 21:16:21] "[35m[1mPOST /generate-token HTTP/1.1[0m" 201 -
+INFO:__main__:Token verified for user: phillip.bradford@uconn.edu
+INFO:werkzeug:127.0.0.1 - - [12/Dec/2025 21:16:21] "POST /verify-token HTTP/1.1" 200 -
+INFO:__main__:Successful login for user: phillip.bradford@uconn.edu
+INFO:werkzeug:127.0.0.1 - - [12/Dec/2025 21:16:21] "POST /login HTTP/1.1" 200 -
+WARNING:__main__:Invalid token verification attempt
+INFO:werkzeug:127.0.0.1 - - [12/Dec/2025 21:16:21] "[33mPOST /verify-token HTTP/1.1[0m" 404 -
+INFO:__main__:Token revoked for user: phillip.bradford@uconn.edu
+INFO:werkzeug:127.0.0.1 - - [12/Dec/2025 21:16:21] "POST /revoke-token HTTP/1.1" 200 -
+WARNING:__main__:Invalid token verification attempt
+INFO:werkzeug:127.0.0.1 - - [12/Dec/2025 21:16:21] "[33mPOST /verify-token HTTP/1.1[0m" 404 -

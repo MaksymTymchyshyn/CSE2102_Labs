@@ -1,0 +1,31 @@
+ * Serving Flask app 'my-server'
+ * Debug mode: on
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.0.10.209:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 117-142-076
+INFO:werkzeug:127.0.0.1 - - [12/Dec/2025 21:17:03] "GET / HTTP/1.1" 200 -
+/workspaces/CSE2102_Labs/Lab_10/my-server.py:64: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "exp": datetime.datetime.utcnow() + datetime.timedelta(seconds=expires_in),
+/workspaces/CSE2102_Labs/Lab_10/my-server.py:65: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "iat": datetime.datetime.utcnow()  # Issued at
+INFO:__main__:Generated JWT for user: 123
+INFO:werkzeug:127.0.0.1 - - [12/Dec/2025 21:17:03] "[35m[1mPOST /generate-token HTTP/1.1[0m" 201 -
+INFO:__main__:Token verified for user: 123
+INFO:werkzeug:127.0.0.1 - - [12/Dec/2025 21:17:03] "POST /verify-token HTTP/1.1" 200 -
+INFO:__main__:Login successful for user: 123
+INFO:werkzeug:127.0.0.1 - - [12/Dec/2025 21:17:03] "POST /login HTTP/1.1" 200 -
+WARNING:__main__:Token verification failed: Invalid crypto padding
+INFO:werkzeug:127.0.0.1 - - [12/Dec/2025 21:17:03] "[31m[1mPOST /verify-token HTTP/1.1[0m" 401 -
+INFO:__main__:Generated JWT for user: 999
+INFO:werkzeug:127.0.0.1 - - [12/Dec/2025 21:17:03] "[35m[1mPOST /generate-token HTTP/1.1[0m" 201 -
+WARNING:__main__:Token verification failed: expired token
+INFO:werkzeug:127.0.0.1 - - [12/Dec/2025 21:17:06] "[31m[1mPOST /verify-token HTTP/1.1[0m" 401 -
+INFO:__main__:Token revoked: 8533cff5-30a8-4048-890d-206d522aed63
+INFO:werkzeug:127.0.0.1 - - [12/Dec/2025 21:17:06] "POST /revoke-token HTTP/1.1" 200 -
+WARNING:__main__:Attempted to use revoked token: 8533cff5-30a8-4048-890d-206d522aed63
+INFO:werkzeug:127.0.0.1 - - [12/Dec/2025 21:17:06] "[31m[1mPOST /verify-token HTTP/1.1[0m" 401 -
